@@ -81,9 +81,9 @@ Build the examples with:
 $ make examples
 ```
 
-## Compatiblity
+## Compatibility
 
-The interfaces of _fortran-nng_ differ slightly from C API:
+The interfaces of _fortran-nng_ differ slightly from the C API:
 
 * Derived types do not have to be initialised like in C.
 * All strings passed to the NNG interfaces have to be properly null-terminated
@@ -97,6 +97,7 @@ The interfaces of _fortran-nng_ differ slightly from C API:
 ## References
 
 * [NNG Web Site](https://nng.nanomsg.org/)
+* [NNG Repository](https://github.com/nanomsg/nng)
 * [NNG Documentation](https://nng.nanomsg.org/man/v1.10.0/index.html) (v1.10.0)
 
 ## Licence
