@@ -35,6 +35,6 @@ jobs:
         gfortran --version
         which gcc
         gcc --version
-        make
+        make PREFIX=/usr
         make examples
         make install PREFIX=/tmp
