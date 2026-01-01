@@ -6,8 +6,11 @@ CC = gcc
 FC = gfortran
 AR = ar
 
-CFLAGS  = -O2
-FFLAGS  = -O2 -std=f2018
+DEBUG   = -g -O0 -Wall -std=f2018
+RELEASE = -O2
+
+CFLAGS  = $(RELEASE) -I$(PREFIX)/include
+FFLAGS  = $(RELEASE)
 ARFLAGS = rcs
 LDFLAGS = -L$(PREFIX)/lib
 LDLIBS  = -lnng
