@@ -26,7 +26,13 @@ jobs:
         sudo apt-get install -y gcc-${GCC_V} gfortran-${GCC_V} make
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-${GCC_V} 100 \
           --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-${GCC_V}
-        sudo apt-get install libnng1 libnng-dev nng-utils
+        git config --global url.https://github.com/.insteadOf git://github.com/
+        git clone --depth 1 --branch v1.11 https://github.com/nanomsg/nng.git
+        mkdir -p nng/build
+        cd nng/build/
+        cmake ..
+        make
+        make install
 
     - name: Build (Linux)
       if: contains(matrix.os, 'ubuntu')
