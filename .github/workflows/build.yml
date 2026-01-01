@@ -30,7 +30,7 @@ jobs:
         git clone --depth 1 --branch v1.11 https://github.com/nanomsg/nng.git
         mkdir -p nng/build
         cd nng/build/
-        cmake ..
+        cmake -DCMAKE_INSTALL_PREFIX:PATH=/tmp ..
         make
         make install
 
@@ -41,6 +41,6 @@ jobs:
         gfortran --version
         which gcc
         gcc --version
-        make PREFIX=/usr
+        make PREFIX=/tmp
         make examples
         make install PREFIX=/tmp
