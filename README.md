@@ -1,5 +1,7 @@
 # fortran-nng
 
+[![Build](https://github.com/interkosmos/fortran-nng/actions/workflows/build.yml/badge.svg)](https://github.com/interkosmos/fortran-nng/actions/workflows/build.yml)
+
 A collection of Fortran 2018 ISO C binding interfaces to the lightweight
 messaging library [NNG](https://nng.nanomsg.org/) **v1.11.0**:
 
