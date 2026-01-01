@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -42,5 +42,5 @@ jobs:
         which gcc
         gcc --version
         make PREFIX=/tmp
-        make examples
+        make examples PREFIX=/tmp
         make install PREFIX=/tmp
