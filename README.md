@@ -124,7 +124,8 @@ The interfaces of _fortran-nng_ differ slightly from the C API:
 * Derived types do not have to be initialised like in C.
 * All strings passed to the NNG interfaces have to be properly null-terminated
   with constant `c_null_char`, except for parameter strings already provided by
-  the Fortran modules.
+  the Fortran modules. You can use function `f_c_str()` from module `nng_util`
+  to add the null-termination.
 * C string pointers returned by NNG functions are converted to Fortran
   allocatable character through wrappers. The interfaces are public and end with
   suffix `_`.

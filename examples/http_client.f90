@@ -21,6 +21,7 @@ program main
     !!
     use :: nng
     use :: nng_http
+    use :: nng_util
     implicit none (type, external)
 
     character(80) :: arg
@@ -44,7 +45,7 @@ program main
 
     http_block: block
         ! Allocate data structures.
-        rc = nng_url_parse(url, trim(arg) // c_null_char);  if (rc /= 0) exit http_block
+        rc = nng_url_parse(url, f_c_str(arg));              if (rc /= 0) exit http_block
         rc = nng_http_client_alloc(client, url);            if (rc /= 0) exit http_block
         rc = nng_http_req_alloc(req, url);                  if (rc /= 0) exit http_block
         rc = nng_http_res_alloc(res);                       if (rc /= 0) exit http_block
@@ -88,7 +89,7 @@ program main
             end if
 
             ! Get payload size from response header.
-            header = nng_http_res_get_header(res, 'Content-Length' // c_null_char)
+            header = nng_http_res_get_header(res, f_c_str('Content-Length'))
             read (header, *, iostat=stat) n
 
             if (len(header) == 0 .or. stat /= 0) then

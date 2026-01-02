@@ -28,6 +28,7 @@ program main
     !!
     use :: nng
     use :: nng_pubsub0
+    use :: nng_util, only: f_c_str
     implicit none (type, external)
 
     character(*), parameter :: PROXY_FRONT_URL = 'tcp://localhost:3327'
@@ -47,10 +48,10 @@ program main
     if (rc /= 0) call error(rc, 'Failed to open back end socket')
 
     ! Now we need to set up a listener for each socket so that they have addresses.
-    rc = nng_listener_create(ls_front, sock_front, PROXY_FRONT_URL // c_null_char)
+    rc = nng_listener_create(ls_front, sock_front, f_c_str(PROXY_FRONT_URL))
     if (rc /= 0) call error(rc, 'Failed to create front listener')
 
-    rc = nng_listener_create(ls_back, sock_back, PROXY_BACK_URL // c_null_char)
+    rc = nng_listener_create(ls_back, sock_back, f_c_str(PROXY_BACK_URL))
     if (rc /= 0) call error(rc, 'Failed to create back listener')
 
     rc = nng_listener_start(ls_front, 0)

@@ -14,6 +14,7 @@ program main
     !! Based on the NNG demo program `reqrep.c`.
     use :: nng
     use :: nng_reqrep0
+    use :: nng_util, only: f_c_str
     implicit none (type, external)
 
     character(*), parameter :: DEFAULT_URL = 'tcp://localhost:3327'
@@ -52,7 +53,7 @@ contains
         rc = nng_req0_open(socket)
         if (rc /= 0) call fatal('nng_req0_open', rc)
 
-        rc = nng_dialer_create(dialer, socket, url // c_null_char)
+        rc = nng_dialer_create(dialer, socket, f_c_str(url))
         if (rc /= 0) call fatal('nng_dialer_create', rc)
 
         rc = nng_socket_set_ms(socket, NNG_OPT_REQ_RESENDTIME, 2000)
@@ -98,7 +99,7 @@ contains
         rc = nng_rep0_open(socket)
         if (rc /= 0) call fatal('nng_rep0_open', rc)
 
-        rc = nng_listener_create(listener, socket, url // c_null_char)
+        rc = nng_listener_create(listener, socket, f_c_str(url))
         if (rc /= 0) call fatal('nng_listener_create', rc)
 
         rc = nng_socket_set_ms(socket, NNG_OPT_REQ_RESENDTIME, 2000)

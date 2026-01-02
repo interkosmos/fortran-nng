@@ -20,6 +20,7 @@ program main
     !! ```
     use :: nng
     use :: nng_pubsub0
+    use :: nng_util, only: f_c_str
     implicit none (type, external)
 
     character(80) :: name, type, url
@@ -75,7 +76,7 @@ contains
 
         print '("[CLIENT ", a, "] CONNECTING TO ", a)', trim(name), trim(url)
 
-        rc = nng_dial(socket, trim(url) // c_null_char, dialer, 0)
+        rc = nng_dial(socket, f_c_str(url), dialer, 0)
         if (rc /= 0) call fatal(rc, 'nng_dial')
 
         do
@@ -108,7 +109,7 @@ contains
         rc = nng_pub0_open(socket)
         if (rc /= 0) call fatal(rc, 'nng_pub0_open')
 
-        rc = nng_listen(socket, trim(url) // c_null_char, listener, 0)
+        rc = nng_listen(socket, f_c_str(url), listener, 0)
         if (rc /= 0) call fatal(rc, 'nng_listen')
 
         do
