@@ -45,7 +45,7 @@ OBJ = nng.o \
 
 all: $(TARGET)
 
-examples: http_client pubsub pubsub_forwarder reqrep
+examples: http_client pipeline pubsub pubsub_forwarder reqrep
 
 $(TARGET): $(SRC)
 	$(CC) $(CFLAGS) -c src/nng_macro.c
@@ -63,6 +63,9 @@ $(TARGET): $(SRC)
 
 http_client: $(TARGET) examples/http_client.f90
 	$(FC) $(FFLAGS) $(LDFLAGS) -o http_client examples/http_client.f90 $(TARGET) $(LDLIBS)
+
+pipeline: $(TARGET) examples/pipeline.f90
+	$(FC) $(FFLAGS) $(LDFLAGS) -o pipeline examples/pipeline.f90 $(TARGET) $(LDLIBS)
 
 pubsub: $(TARGET) examples/pubsub.f90
 	$(FC) $(FFLAGS) $(LDFLAGS) -o pubsub examples/pubsub.f90 $(TARGET) $(LDLIBS)
@@ -95,6 +98,7 @@ clean:
 	if [ `ls -1 *.o 2>/dev/null | wc -l` -gt 0 ]; then rm *.o; fi
 	if [ -e $(TARGET) ]; then rm $(TARGET); fi
 	if [ -e http_client ]; then rm http_client; fi
+	if [ -e pipeline ]; then rm pipeline; fi
 	if [ -e pubsub ]; then rm pubsub; fi
 	if [ -e pubsub_forwarder ]; then rm pubsub_forwarder; fi
 	if [ -e reqrep ]; then rm reqrep; fi

@@ -59,6 +59,12 @@ library by running:
 $ make
 ```
 
+If you prefer LLVM, run, for example:
+
+```
+$ make CC=clang21 FC=flang21
+```
+
 If the NNG library is installed in `/opt`, pass the prefix:
 
 ```
@@ -100,6 +106,7 @@ fortran-nng = { git = "https://github.com/interkosmos/fortran-nng.git" }
 The following programs can be found in directory `examples/`:
 
 * **http_client**: sends an HTTP GET request and outputs the response.
+* **pipeline**: solves producer/consumer problem with pipeline (one-way pipe).
 * **pubsub**: shows pub/sub messaging pattern.
 * **pubsub_forwarder**: implements a simple pub/sub forwarder.
 * **reqrep**: demonstrates request-response pattern between client and server.

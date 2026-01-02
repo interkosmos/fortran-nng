@@ -22,6 +22,11 @@ source-dir = "examples"
 main = "http_client.f90"
 
 [[example]]
+name = "pipeline"
+source-dir = "examples"
+main = "pipeline.f90"
+
+[[example]]
 name = "pubsub"
 source-dir = "examples"
 main = "pubsub.f90"
