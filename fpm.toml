@@ -45,3 +45,8 @@ main = "pubsub_forwarder.f90"
 name = "reqrep"
 source-dir = "examples"
 main = "reqrep.f90"
+
+[[example]]
+name = "survey"
+source-dir = "examples"
+main = "survey.f90"

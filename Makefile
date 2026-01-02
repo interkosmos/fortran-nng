@@ -2,9 +2,10 @@
 
 PREFIX  = /usr/local
 
-CC = gcc
-FC = gfortran
-AR = ar
+CC   = gcc
+FC   = gfortran
+AR   = ar
+FORD = ford
 
 DEBUG   = -g -O0 -Wall -std=f2018
 RELEASE = -O2
@@ -41,11 +42,11 @@ OBJ = nng.o \
       nng_survey0.o \
       nng_util.o
 
-.PHONY: all clean examples install
+.PHONY: all clean doc examples install
 
 all: $(TARGET)
 
-examples: http_client pair pipeline pubsub pubsub_forwarder reqrep
+examples: http_client pair pipeline pubsub pubsub_forwarder reqrep survey
 
 $(TARGET): $(SRC)
 	$(CC) $(CFLAGS) -c src/nng_macro.c
@@ -79,6 +80,12 @@ pubsub_forwarder: $(TARGET) examples/pubsub_forwarder.f90
 reqrep: $(TARGET) examples/reqrep.f90
 	$(FC) $(FFLAGS) $(LDFLAGS) -o reqrep examples/reqrep.f90 $(TARGET) $(LDLIBS)
 
+survey: $(TARGET) examples/survey.f90
+	$(FC) $(FFLAGS) $(LDFLAGS) -o survey examples/survey.f90 $(TARGET) $(LDLIBS)
+
+doc:
+	$(FORD) ford.md
+
 install: $(TARGET)
 	@echo "--- Installing $(TARGET) to $(LIBDIR)/ ..."
 	install -d $(LIBDIR)
@@ -106,3 +113,4 @@ clean:
 	if [ -e pubsub ]; then rm pubsub; fi
 	if [ -e pubsub_forwarder ]; then rm pubsub_forwarder; fi
 	if [ -e reqrep ]; then rm reqrep; fi
+	if [ -e survey ]; then rm survey; fi

@@ -54,7 +54,7 @@ contains
         if (rc /= 0) call fatal(rc, 'nng_pull0_open')
 
         rc = nng_listen(socket, f_c_str(url), listener, 0)
-        if (rc /= 0) call fatal(rc, 'nng_pull0_open')
+        if (rc /= 0) call fatal(rc, 'nng_listen')
 
         do
             buffer = ' '

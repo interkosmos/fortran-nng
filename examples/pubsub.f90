@@ -72,7 +72,7 @@ contains
         ! with nng_socket_set_string(), instead we just set the value to an
         ! arbitrary string with target attribute and pass size 0.
         rc = nng_socket_set(socket, NNG_OPT_SUB_SUBSCRIBE, c_loc(buffer), 0_c_size_t)
-        if (rc /= 0) call fatal(rc, 'nng_socket_set_string')
+        if (rc /= 0) call fatal(rc, 'nng_socket_set')
 
         print '("[CLIENT ", a, "] CONNECTING TO ", a)', trim(name), trim(url)
 
@@ -117,7 +117,7 @@ contains
             print '("[SERVER] PUBLISHING DATE ", a)', date
 
             rc = nng_send(socket, c_loc(date), len(date, kind=c_size_t), 0)
-            if (rc /= 0) call fatal(rc, 'nng_listen')
+            if (rc /= 0) call fatal(rc, 'nng_send')
 
             call nng_msleep(1000)
         end do

@@ -111,6 +111,7 @@ The following programs can be found in directory `examples/`:
 * **pubsub**: shows pub/sub messaging pattern.
 * **pubsub_forwarder**: implements a simple pub/sub forwarder.
 * **reqrep**: demonstrates request-response pattern between client and server.
+* **survey**: sends a timed survey out.
 
 Build the examples with:
 
@@ -137,12 +138,31 @@ The _fortran-nng_ bindings differ slightly from the C API:
 * The interfaces to the NNG log functions expect a single (non-variadic) string
   argument only.
 
+## Source Code Documentation
+
+The source code documentation has to be created with
+[FORD](https://github.com/Fortran-FOSS-Programmers/ford). Install the Python
+package with:
+
+```
+$ python3 -m pip install -U ford
+```
+
+In the _fortran-nng_ repository, run:
+
+```
+$ make doc
+```
+
+The HTML files will be written to directory `doc/`. Open `index.html` in a web
+browser.
+
 ## References
 
 * [NNG Web Site](https://nng.nanomsg.org/)
 * [NNG Repository](https://github.com/nanomsg/nng)
 * [NNG API Documentation](https://nng.nanomsg.org/man/v1.10.0/index.html) (v1.10.0)
-* [Getting Started with “nng”](https://nanomsg.org/gettingstarted/nng/index.html)
+* [Getting Started with NNG](https://nanomsg.org/gettingstarted/nng/index.html)
 
 ## Licence
 
