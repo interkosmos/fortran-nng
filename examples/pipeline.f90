@@ -18,6 +18,7 @@ program main
     !! ```
     use :: nng
     use :: nng_pipeline0
+    use :: nng_util
     implicit none (type, external)
 
     character(80) :: message, name, url
@@ -32,14 +33,6 @@ program main
         case default; print '("Usage: pipeline node0|node1 <URL> <ARG> ...")'
     end select
 contains
-    pure function f_c_str(f_str) result(c_str)
-        !! In Fortran 2023, use `f_c_string()` instead.
-        character(*), intent(in)  :: f_str
-        character(:), allocatable :: c_str
-
-        c_str = trim(f_str) // c_null_char
-    end function f_c_str
-
     subroutine fatal(rc, str)
         integer,      intent(in) :: rc
         character(*), intent(in) :: str

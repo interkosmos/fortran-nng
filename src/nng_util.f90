@@ -8,6 +8,7 @@ module nng_util
     private
 
     public :: c_f_str_ptr
+    public :: f_c_str
 contains
     subroutine c_f_str_ptr(c_str, f_str)
         !! Copies a C string, passed as a C pointer, to a Fortran string.
@@ -44,4 +45,15 @@ contains
 
         if (.not. allocated(f_str)) f_str = ''
     end subroutine c_f_str_ptr
+
+    pure function f_c_str(f_str) result(c_str)
+        !! Converts Fortran string to C string. In Fortran 2023, use
+        !! `f_c_string()` instead.
+        use, intrinsic :: iso_c_binding, only: c_null_char
+
+        character(*), intent(in)  :: f_str
+        character(:), allocatable :: c_str
+
+        c_str = trim(f_str) // c_null_char
+    end function f_c_str
 end module nng_util
