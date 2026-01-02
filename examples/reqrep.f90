@@ -19,15 +19,14 @@ program main
     character(*), parameter :: DEFAULT_URL = 'tcp://localhost:3327'
     integer,      parameter :: CMD_CLOCK   = 1
 
-    character(8) :: name, arg
+    character(8) :: arg
 
-    call get_command_argument(0, name)
     call get_command_argument(1, arg)
 
     select case (arg)
         case ('client'); call client(DEFAULT_URL)
         case ('server'); call server(DEFAULT_URL)
-        case default;    print '("Usage: ", a, " client|server")', trim(name)
+        case default;    print '("Usage: reqrep client|server")'
     end select
 
     call nng_fini()

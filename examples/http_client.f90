@@ -23,7 +23,7 @@ program main
     use :: nng_http
     implicit none (type, external)
 
-    character(80) :: arg, name
+    character(80) :: arg
     integer       :: rc
     type(c_ptr)   :: aio, client, conn, url
     type(c_ptr)   :: req, res
@@ -36,8 +36,7 @@ program main
     res    = c_null_ptr
 
     if (command_argument_count() < 1) then
-        call get_command_argument(0, name)
-        print '("Usage: ", a, " <URL>")', trim(name)
+        print '("Usage: http_client <URL>")'
         stop
     end if
 
@@ -103,8 +102,7 @@ program main
             allocate (character(n) :: data)
 
             ! Set up a single iov to point to the buffer.
-            iov(1)%iov_len = n
-            iov(1)%iov_buf = c_loc(data)
+            iov(1) = nng_iov(c_loc(data), n)
 
             ! Following never fails with fewer than 5 elements.
             rc = nng_aio_set_iov(aio, size(iov), iov)
