@@ -17,6 +17,11 @@ source-dir = "src"
 library = true
 
 [[example]]
+name = "bus"
+source-dir = "examples"
+main = "bus.f90"
+
+[[example]]
 name = "http_client"
 source-dir = "examples"
 main = "http_client.f90"

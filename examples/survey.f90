@@ -62,7 +62,6 @@ contains
         character(*), intent(in) :: name
 
         character(80), target :: buffer
-        character(29), target :: iso
         integer               :: rc
         integer(c_size_t)     :: sz
         type(nng_dialer)      :: dialer
@@ -81,9 +80,10 @@ contains
             if (rc /= 0) cycle
             print '("CLIENT (", a, "): RECEIVED ", a, " SURVEY REQUEST")', trim(name), trim(buffer)
 
-            iso = iso8601()
+            buffer = iso8601()
+            sz = len_trim(buffer, c_size_t)
             print '("CLIENT (", a, "): SENDING DATE SURVEY RESPONSE")', trim(name)
-            rc = nng_send(socket, c_loc(iso), len(iso, c_size_t), 0)
+            rc = nng_send(socket, c_loc(buffer), sz, 0)
             if (rc /= 0) call fatal(rc, 'nng_send')
         end do
 

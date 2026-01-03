@@ -4,28 +4,31 @@
 ! Licence: ISC
 program main
     !! Forwarder example based on the NNG demo program `pubsub_forwarder.c`.
-    !!
-    !! This example shows how to use raw sockets to set up a forwarder or proxy for
-    !! pub/sub.
+    !! This example shows how to use raw sockets to set up a forwarder or proxy
+    !! for pub/sub.
     !!
     !! An example setup for running this example would involve the following:
     !!
-    !!  * Run this example binary (in the background or a terminal, etc.).
+    !! Run this example binary (in the background or a terminal, etc.). In a
+    !! new terminal, run:
     !!
-    !!  * In a new terminal, run:
+    !! ```
+    !! nngcat --sub --dial "tcp://localhost:3328" --quoted
+    !! ```
     !!
-    !!      $ nngcat --sub --dial "tcp://localhost:3328" --quoted
+    !! In a second terminal, run:
     !!
-    !!  * In a second terminal, run:
+    !! ```
+    !! nngcat --sub --dial "tcp://localhost:3328" --quoted
+    !! ```
     !!
-    !!      $ nngcat --sub --dial "tcp://localhost:3328" --quoted
+    !! In a third terminal, run:
     !!
-    !!  * In a third terminal, run:
-    !!
-    !!      for n in $(seq 0 99);
-    !!          do nngcat --pub --dial "tcp://localhost:3327" --data "$n";
-    !!      done
-    !!
+    !! ```
+    !! for n in $(seq 0 99);
+    !!     do nngcat --pub --dial "tcp://localhost:3327" --data "$n";
+    !! done
+    !! ```
     use :: nng
     use :: nng_pubsub0
     use :: nng_util, only: f_c_str

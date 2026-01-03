@@ -105,13 +105,14 @@ fortran-nng = { git = "https://github.com/interkosmos/fortran-nng.git" }
 
 The following programs can be found in directory `examples/`:
 
-* **http_client**: sends an HTTP GET request and outputs the response.
-* **pair**: shows one-to-one peer relationship.
-* **pipeline**: solves producer/consumer problem with pipeline (one-way pipe).
-* **pubsub**: shows pub/sub messaging pattern.
-* **pubsub_forwarder**: implements a simple pub/sub forwarder.
-* **reqrep**: demonstrates request-response pattern between client and server.
-* **survey**: sends a timed survey out.
+* **bus** creates an interconnected mesh network.
+* **http_client** sends an HTTP GET request and outputs the response.
+* **pair** shows one-to-one peer relationship.
+* **pipeline** solves producer/consumer problem with pipeline (one-way pipe).
+* **pubsub** shows pub/sub messaging pattern.
+* **pubsub_forwarder** implements a simple pub/sub forwarder.
+* **reqrep** demonstrates request-response pattern between client and server.
+* **survey** sends a timed survey out.
 
 Build the examples with:
 

@@ -5,7 +5,7 @@
 program main
     !! This is a very simple HTTP client based on the NNG demo program
     !! `http_client.c`. It only performs HTTP GET operations, and does not
-    !! follow HTTP redirects. Think of it as a trivialized version of CURL. It
+    !! follow HTTP redirects. Think of it as a trivialized version of cURL. It
     !! is super simple, taking the URL on the command line, and emitting the
     !! results to stdout. For clarity, we are eliding TLS support.
     !!
@@ -17,8 +17,9 @@ program main
     !!
     !! Example usage:
     !!
-    !!     $ ./http_client http://httpbin.org/ip
-    !!
+    !! ```
+    !! ./http_client http://httpbin.org/ip
+    !! ```
     use :: nng
     use :: nng_http
     use :: nng_util
