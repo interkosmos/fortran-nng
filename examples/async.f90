@@ -28,7 +28,7 @@ program main
     use :: nng_util, only: f_c_str
     implicit none (type, external)
 
-    ! Parallel is the maximum number of outstanding requests we can handle.
+    ! MAX_PARELLEL is the maximum number of outstanding requests we can handle.
     ! This is *NOT* the number of threads in use, but instead represents
     ! outstanding work items. Select a small number to reduce memory size.
     ! (Each one of these can be thought of as a request-reply loop.) Note that
